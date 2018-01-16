@@ -1113,8 +1113,8 @@ template<class dataFrameType> void HcalDigisValidation::reco(const edm::Event& i
             // fraction 5,6 bins if ampl. is big.
             //histogram names have not been changed, but it should be understood that bin_5 is soi, and bin_6_7 is latter TS'
 	    if (v_ampl[1] > 30. && depth == 1) {
-            int soi = tool.presamples();
-            int lastbin = tool.size() - 1;
+              int soi = tool.presamples();
+              int lastbin = tool.size() - 1;
 
 	      double fbinSOI = tool[soi] - calibrations.pedestal((dataFrame)[soi].capid());
 	      double fbinPS = 0; 
