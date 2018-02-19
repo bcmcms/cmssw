@@ -1,7 +1,9 @@
 import FWCore.ParameterSet.Config as cms
 
 HcalSimHitsAnalyser = cms.EDAnalyzer("HcalSimHitsValidation",
-    outputFile = cms.untracked.string('')
+    outputFile = cms.untracked.string(''),
+    hf1 = cms.double(0.383),
+    hf2 = cms.double(0.368)
 )
 
 from Configuration.Eras.Modifier_fastSim_cff import fastSim
@@ -9,3 +11,10 @@ fastSim.toModify(    HcalSimHitsAnalyser, ModuleLabel = cms.untracked.string("fa
 
 from Configuration.Eras.Modifier_run2_HCAL_2017_cff import run2_HCAL_2017
 run2_HCAL_2017.toModify( HcalSimHitsAnalyser, TestNumber = cms.untracked.bool(True), EEHitCollection = cms.untracked.string("") )
+
+# post-LS1 switch for sampling factors
+from Configuration.Eras.Modifier_run2_common_cff import run2_common
+run2_common.toModify( HcalSimHitsAnalyser, 
+    hf1 = cms.double(0.67),
+    hf2 = cms.double(0.67)
+)
